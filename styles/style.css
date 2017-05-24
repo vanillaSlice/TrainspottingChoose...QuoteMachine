@@ -1,0 +1,61 @@
+body {
+  font-family: monospace, sans-serif;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+main {
+  min-height: 80%;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+#quote {
+  font-size: 36px;
+}
+#quote-details {
+  margin-bottom: 20px;
+}
+#film {
+  font-style: italic;
+}
+#box {
+  border-radius: 3px;
+  padding: 20px;
+  text-align: center;
+  border-color: rgb(249, 11, 159);
+  border-width: 2px;
+  border-style: solid;
+}
+#twitter-button {
+  border-radius: 3px;
+  border-color: rgb(249, 11, 159);
+  border-width: 2px;
+  border-style: solid;
+  padding: 10px;
+  color: rgb(249, 11, 159);
+}
+button {
+  padding: 10px;
+  border-radius: 3px;
+  border-color: rgb(249, 11, 159);
+  border-width: 2px;
+  border-style: solid;
+  background-color: transparent;
+  margin-left: 20px;
+}
+#twitter-button:hover,
+#new-quote-button:hover {
+  text-decoration: none;
+  background-color: rgb(249, 11, 159);
+  color: rgb(14, 12, 15);
+}
+
+#twitter-button:visited,
+#twitter-button:focus {
+  text-decoration: none;
+}
+
+/* The element to apply the animation to */
+body {
+    animation-name: example;
+    animation-duration: 4s;
+}
