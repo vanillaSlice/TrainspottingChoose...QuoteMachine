@@ -2,65 +2,50 @@ $(document).ready(function () {
   
   'use strict';
   
+  var character = 'Mark "Rent-boy" Renton';
+  var film = 'Trainspotting';
   var quotes = [
-    {
-      "quote": "The tings you own end up owning you",
-      "character": "Tyler Durden",
-      "film": "Fight Club",
-      "primary": "rgb(14, 12, 15)",
-      "secondary": "rgb(249, 11, 159)"
-    },
-    
-    
-    
-    {
-      "quote": "Choose Life",
-      "character": "Renton",
-      "film": "Trainspotting",
-      "primary": "rgb(232, 107, 0)",
-      "secondary": "rgb(255, 255, 255)"  
-    },
-    {
-      "quote": "Choose Life",
-      "character": "Renton",
-      "film": "Trainspotting",
-      "primary": "rgb(12, 12, 12)",
-      "secondary": "rgb(61, 249, 0)"  
-    },
-    {
-      "quote": "Choose Life",
-      "character": "Renton",
-      "film": "Trainspotting",
-      "primary": "rgb(255,241,27)",
-      "secondary": "rgb(10, 10, 10)"  
-    }
+    'Choose Life.',
+    'Choose a job.',
+    'Choose a career.',
+    'Choose a family.',
+    'Choose a f**king big television.',
+    'Choose washing machines.',
+    'Choose cars.',
+    'Choose compact disc players.',
+    'Choose electrical tin openers.',
+    'Choose good health.',
+    'Choose low cholesterol.',
+    'Choose dental insurance.',
+    'Choose fixed interest mortgage repayments.',
+    'Choose a starter home.',
+    'Choose your friends.',
+    'Choose leisurewear and matching luggage.',
+    'Choose a three-piece suit on hire purchase in a range of f**king fabrics.',
+    'Choose DIY and wondering who the f**k you are on Sunday morning.',
+    'Choose sitting on that couch watching mind-numbing, spirit-crushing game shows, stuffing f**king junk food into your mouth.',
+    'Choose rotting away at the end of it all, pissing your last in a miserable home, nothing more than an embarrassment to the selfish, f**ked up brats you spawned to replace yourselves.',
+    'Choose your future.'
   ];
+  var currentQuote;
   
-  var quote;
+  $('#character').html(character);
+  $('#film').html(film);
   
-  $('#new-quote-button').click(function () {
-    generateNewQuote();
+  function generateRandomQuote() {
+    var randomQuote;
+    do {
+      randomQuote = quotes[Math.round(Math.random() * quotes.length)];
+    } while (randomQuote === currentQuote);
+    currentQuote = randomQuote;
+  }
+  
+  generateRandomQuote();
+  $('#quote-text').html(currentQuote);
+  
+  $('#next-button').click(function () {
+    generateRandomQuote();
+    $('#quote-text').html(currentQuote);
   });
-  
-  function generateNewQuote() {
-    quote = '"The things you own end up owning you."';
-    $('#quote').html(quote);
-    $('#quote-details').html("- Tyler Durden in <span id=\"film\">Fight Club</span>");
-    $('#twitter-button').attr('href', "https://twitter.com/intent/tweet?text=" + encodeURIComponent(quote + " Tyler Durden") + "&hashtags=moviequotes");
-    var randomNumber = Math.round(Math.random() * quotes.length);
-    changeColours(quotes[randomNumber].primary, quotes[randomNumber].secondary);
-  }
-  
-  function changeColours(primary, secondary) {
-    $('body').css({'background-color': primary, 'color': secondary});
-    $('#box').css('border-color', secondary);
-    $('#new-quote-button').css('border-color', secondary);
-    $('#twitter-button').css({'color': secondary, 'border-color': secondary});
-    $("#twitter-button").hover(function() {
-      $(this).css({'color': primary, 'background-color': secondary})
-    }, function() {
-      $(this).css({'color': secondary, 'background-color': primary})
-    });
-  }
   
 });

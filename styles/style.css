@@ -1,61 +1,116 @@
+/*
+  Colours:
+  Primary Colour #e86b00 (orange)
+  Secondary Colour #fff (white)
+*/
+
 body {
-  font-family: monospace, sans-serif;
-  -webkit-font-smoothing: subpixel-antialiased;
+  font-family: Helvetica, Arial, sans-serif;
+  background-color: #e86b00;
+  color: #fff;
+  padding: 0.938em;
+  word-wrap: break-word;
 }
+
 main {
-  min-height: 80%;
-  min-height: 80vh;
+  -webkit-animation-name: fade-in;
+  animation-name: fade-in;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  margin: 0 auto;
+  max-width: 100%;
+  min-height: 100%;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  text-align: right;
 }
-#quote {
-  font-size: 36px;
+
+@-webkit-keyframes fade-in {
+  from {opacity: 0};
+  to {opacity: 1};
 }
+
+@keyframes fade-in {
+  from {opacity: 0};
+  to {opacity: 1};
+}
+
+@media (min-width: 1200px) {
+  main {
+    width: 1140px;
+  } 
+}
+
+@media (min-width: 992px) {
+  main {
+    width: 960px;
+  }
+}
+
+@media (min-width: 768px) {
+  main {
+    width: 720px;
+  }
+}
+
+@media (min-width: 576px) {
+  main {
+    width: 540px;
+  }
+}
+
+div {
+  max-width: 100%;
+  width: 100%;
+}
+
+#quote-text {
+  font-size: 3.125em;
+  font-weight: bold;
+  text-align: justify;
+}
+
 #quote-details {
-  margin-bottom: 20px;
+  margin-top: 2.5em;
 }
+
+#character {
+  font-weight: bold;
+}
+
 #film {
+  font-weight: bold;
   font-style: italic;
 }
-#box {
-  border-radius: 3px;
-  padding: 20px;
-  text-align: center;
-  border-color: rgb(249, 11, 159);
-  border-width: 2px;
-  border-style: solid;
-}
-#twitter-button {
-  border-radius: 3px;
-  border-color: rgb(249, 11, 159);
-  border-width: 2px;
-  border-style: solid;
-  padding: 10px;
-  color: rgb(249, 11, 159);
-}
+
 button {
-  padding: 10px;
-  border-radius: 3px;
-  border-color: rgb(249, 11, 159);
-  border-width: 2px;
-  border-style: solid;
+  margin-top: 2.5em;
+  font-family: Helvetica, Arial, sans-serif;
   background-color: transparent;
-  margin-left: 20px;
-}
-#twitter-button:hover,
-#new-quote-button:hover {
-  text-decoration: none;
-  background-color: rgb(249, 11, 159);
-  color: rgb(14, 12, 15);
-}
-
-#twitter-button:visited,
-#twitter-button:focus {
-  text-decoration: none;
+  font-size: 1em;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  outline: none;
+  padding: 0.313em 0.625em;
 }
 
-/* The element to apply the animation to */
-body {
-    animation-name: example;
-    animation-duration: 4s;
+button:hover {
+  background-color: #fff;
+  color: #e86b00;
+  cursor: pointer;
+}
+
+#tweet-button {
+  margin-left: 0.625em;
 }
