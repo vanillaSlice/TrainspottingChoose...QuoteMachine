@@ -24,7 +24,7 @@ $(document).ready(function () {
       'Choose a three-piece suit on hire purchase in a range of f**king fabrics.',
       'Choose DIY and wondering who the f**k you are on Sunday morning.',
       'Choose sitting on that couch watching mind-numbing, spirit-crushing game shows, stuffing f**king junk food into your mouth.',
-      'Choose rotting away at the end of it all, pissing your last in a miserable home, nothing more than an embarrassment to the selfish, f**ked up brats you spawned to replace yourselves.',
+      'Choose rotting away at the end of it all, p**sing your last in a miserable home, nothing more than an embarrassment to the selfish, f**ked up brats you spawned to replace yourselves.',
       'Choose your future.'
     ],
     quoteParams = {id: '#quote-text'};
