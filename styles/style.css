@@ -114,3 +114,7 @@ button:hover {
 #tweet-button {
   margin-left: 0.625em;
 }
+
+.hidden {
+  visibility: hidden;
+}
