@@ -1,7 +1,7 @@
 $(document).ready(function () {
-  
+
   'use strict';
-  
+
   var character = 'Mark "Rent-boy" Renton',
     film = 'Trainspotting',
     quotes = [
@@ -27,32 +27,44 @@ $(document).ready(function () {
       'Choose rotting away at the end of it all, p**sing your last in a miserable home, nothing more than an embarrassment to the selfish, f**ked up brats you spawned to replace yourselves.',
       'Choose your future.'
     ],
-    quoteParams = {id: '#quote-text'};
-  
+    quoteParams = {
+      id: '#quote-text'
+    };
+
   function typeText(params) {
     if (params.currentIndex <= params.text.length) {
       $(params.id).html('<span>' + params.text.substring(0, params.currentIndex) + '</span>' +
-                        '<span class="hidden">' + params.text.substring(params.currentIndex) + '</span>');
-      params.timeout = setTimeout(function () { typeText(params); }, 25);
+        '<span class="hidden">' + params.text.substring(params.currentIndex) + '</span>');
+      params.timeout = setTimeout(function () {
+        typeText(params);
+      }, 25);
       params.currentIndex += 1;
     }
   }
-  
+
   function typeQuote() {
     quoteParams.text = quotes[Math.round(Math.random() * (quotes.length - 1))];
     quoteParams.currentIndex = 0;
     clearTimeout(quoteParams.timeout);
     typeText(quoteParams);
   }
-  
+
   function typeCharacter() {
-    typeText({id: '#character', text: character, currentIndex: 0});
+    typeText({
+      id: '#character',
+      text: character,
+      currentIndex: 0
+    });
   }
-  
+
   function typeFilm() {
-    typeText({id: '#film', text: film, currentIndex: 0});
+    typeText({
+      id: '#film',
+      text: film,
+      currentIndex: 0
+    });
   }
-  
+
   typeQuote();
   typeCharacter();
   typeFilm();
@@ -60,9 +72,9 @@ $(document).ready(function () {
   $('#next-button').click(function () {
     typeQuote();
   });
-  
+
   $('#tweet-button').click(function () {
     window.open('https://twitter.com/intent/tweet?text="' + encodeURIComponent(quoteParams.text) + '"&hashtags=trainspotting');
   });
-  
+
 });
