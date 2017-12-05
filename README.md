@@ -1,4 +1,4 @@
-# TrainspottingChoose...QuoteMachine
+# Trainspotting "Choose..." Quote Machine
 Intermediate Front End Development Project for FreeCodeCamp.
 
 This page generates famous 'Choose ...' quotes from the film Trainspotting.
