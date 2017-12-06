@@ -1,132 +1,103 @@
 /*
   Colours:
-  Primary Colour #e86b00 (orange)
-  Secondary Colour #fff (white)
+    Primary Colour #e86b00 (orange)
+    Secondary Colour #fff (white)
 */
 
-body {
-  font-family: Helvetica, Arial, sans-serif;
-  background-color: #e86b00;
-  color: #fff;
-  padding: 0.938em;
-  word-wrap: break-word;
+html {
+  height: 100%;
 }
 
-main {
-  -webkit-animation-name: fade-in;
-  animation-name: fade-in;
-  -webkit-animation-duration: 2s;
-  animation-duration: 2s;
-  margin: 0 auto;
-  max-width: 100%;
-  min-height: 100%;
-  min-height: 100vh;
+body {
+  -webkit-animation: fade-in 1s linear;
+          animation: fade-in 1s linear;
+  background-color: #e86b00;
+  color: #fff;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  text-align: right;
+  font-family: Helvetica, Arial, sans-serif;
+  height: 100%;
+  word-wrap: break-word;
 }
 
 @-webkit-keyframes fade-in {
   from {
-    opacity: 0
+    opacity: 0;
   }
-  ;
   to {
-    opacity: 1
+    opacity: 1;
   }
-  ;
 }
 
 @keyframes fade-in {
   from {
-    opacity: 0
+    opacity: 0;
   }
-  ;
   to {
-    opacity: 1
-  }
-  ;
-}
-
-@media (min-width: 1200px) {
-  main {
-    width: 1140px;
+    opacity: 1;
   }
 }
 
-@media (min-width: 992px) {
-  main {
-    width: 960px;
-  }
-}
-
-@media (min-width: 768px) {
-  main {
-    width: 720px;
-  }
-}
-
-@media (min-width: 576px) {
-  main {
-    width: 540px;
-  }
-}
-
-div {
-  max-width: 100%;
-  width: 100%;
-}
-
-#quote-text {
-  font-size: 3.125em;
-  font-weight: bold;
-  text-align: justify;
-}
-
-#quote-details {
-  margin-top: 2.5em;
-}
-
-#character {
-  font-weight: bold;
-}
-
-#film {
-  font-weight: bold;
-  font-style: italic;
-}
-
-button {
-  margin-top: 2.5em;
-  font-family: Helvetica, Arial, sans-serif;
-  background-color: transparent;
-  font-size: 1em;
-  color: #fff;
-  border: 2px solid #fff;
-  border-radius: 5px;
-  -webkit-transition-duration: 0.5s;
-  transition-duration: 0.5s;
-  outline: none;
-  padding: 0.313em 0.625em;
-}
-
-button:hover {
-  background-color: #fff;
-  color: #e86b00;
-  cursor: pointer;
-}
-
-#tweet-button {
-  margin-left: 0.625em;
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .hidden {
   visibility: hidden;
+}
+
+.quote {
+  margin: auto;
+  max-width: 33.75rem;
+  padding: 1rem;
+  text-align: right;
+  width: 100%;
+}
+
+.quote__text {
+  font-size: 3.125rem;
+  font-weight: bold;
+  text-align: justify;
+}
+
+.quote__details {
+  margin-top: 2.5rem;
+}
+
+.quote__character {
+  font-weight: bold;
+}
+
+.quote__film {
+  font-style: italic;
+  font-weight: bold;
+}
+
+.quote__btn {
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  border: 0.125rem solid #fff;
+  border-radius: 0.3125rem;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  margin-top: 2.5rem;
+  outline: none;
+  padding: 0.3125rem 0.625rem;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+
+.quote__btn:focus,
+.quote__btn:hover {
+  background-color: #fff;
+  color: #e86b00;
+}
+
+.quote__tweet-btn {
+  margin-left: 0.625rem;
 }

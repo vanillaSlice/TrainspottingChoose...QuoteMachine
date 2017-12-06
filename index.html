@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Trainspotting Choose ... Quote Machine</title>
+  <title>Trainspotting Choose... Quote Machine</title>
   <meta name="description" content="Intermediate Front End Development Project for FreeCodeCamp">
   <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
@@ -19,18 +19,15 @@
 
 <body>
 
-  <main>
-    <div>
-      <p id="quote-text"></p>
-      <p id="quote-details">
-        <span id="character"></span> in <span id="film"></span>
-      </p>
-      <button id="next-button" type="button" autofocus>Next</button>
-      <button id="tweet-button" type="button">Tweet</button>
-    </div>
-  </main>
+  <div class="quote">
+    <p class="quote__text"></p>
+    <p class="quote__details">
+      <span class="quote__character"></span> in <span class="quote__film"></span>
+    </p>
+    <button class="quote__btn quote__next-btn" type="button">Next</button>
+    <button class="quote__btn quote__tweet-btn" type="button">Tweet</button>
+  </div>
 
-  <!-- scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="./main.js"></script>
 </body>
