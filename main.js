@@ -1,9 +1,12 @@
-$(document).ready(function () {
+$(document).ready(function() {
 
   'use strict';
 
-  var character = 'Mark "Rent-boy" Renton';
-  var film = 'Trainspotting';
+  /*
+   * Text constants.
+   */
+  var characterText = 'Mark "Rent-boy" Renton';
+  var filmText = 'Trainspotting';
   var quotes = [
     'Choose Life.',
     'Choose a job.',
@@ -27,56 +30,77 @@ $(document).ready(function () {
     'Choose rotting away at the end of it all, p**sing your last in a miserable home, nothing more than an embarrassment to the selfish, f**ked up brats you spawned to replace yourselves.',
     'Choose your future.'
   ];
-  var quoteParams = {
-    id: '.quote__text'
-  };
-
-  function typeText(params) {
-    if (params.currentIndex <= params.text.length) {
-      $(params.id).html('<span>' + params.text.substring(0, params.currentIndex) + '</span>' +
-        '<span class="hidden">' + params.text.substring(params.currentIndex) + '</span>');
-      params.timeout = setTimeout(function () {
-        typeText(params);
-      }, 25);
-      params.currentIndex += 1;
-    }
-  }
-
-  function typeQuote() {
-    quoteParams.text = quotes[Math.round(Math.random() * (quotes.length - 1))];
-    quoteParams.currentIndex = 0;
-    clearTimeout(quoteParams.timeout);
-    typeText(quoteParams);
-  }
-
-  function typeCharacter() {
-    typeText({
-      id: '.quote__character',
-      text: character,
-      currentIndex: 0
-    });
-  }
-
-  function typeFilm() {
-    typeText({
-      id: '.quote__film',
-      text: film,
-      currentIndex: 0
-    });
-  }
-
-  typeQuote();
-  typeCharacter();
-  typeFilm();
 
   /*
-   * Add button click events.
+   * DOM elements.
    */
+  var characterElement = $('.quote__character');
+  var filmElement = $('.quote__film');
+  var quoteElement = $('.quote__text');
+  var nextBtnElement = $('.quote__next-btn');
+  var tweetBtnElement = $('.quote__tweet-btn');
 
-  $('.quote__next-btn').click(typeQuote);
+  /*
+   * Typers.
+   */
+  var characterTyper = Typer(characterElement, characterText);
+  var filmTyper = Typer(filmElement, filmText);
+  var quoteTyper = Typer(quoteElement, getRandomQuote());
 
-  $('.quote__tweet-btn').click(function () {
-    window.open('https://twitter.com/intent/tweet?text="' + encodeURIComponent(quoteParams.text) + '"&hashtags=trainspotting');
+  // Typer takes an element and prints the text using a typing effect
+  function Typer(element, text) {
+    var timeout;
+    var currentIndex = 0;
+
+    return {
+      start: function typeText() {
+        // we've reached the end so stop typing
+        if (currentIndex > text.length) {
+          return;
+        }
+
+        element.html(
+          '<span>' + text.substring(0, currentIndex) + '</span>' +
+          '<span class="hidden">' + text.substring(currentIndex) + '</span>'
+        );
+
+        currentIndex++;
+
+        // continue typing after timeout
+        timeout = setTimeout(typeText, 25);
+      },
+
+      stop: function() {
+        clearTimeout(timeout);
+      },
+
+      text: text
+    };
+  };
+
+  function getRandomQuote() {
+    return getRandomElement(quotes);
+  }
+
+  function getRandomElement(arr) {
+    return arr[Math.round(Math.random() * (arr.length - 1))];
+  }
+
+  // type new quote on next button click
+  nextBtnElement.click(function() {
+    quoteTyper.stop();
+    quoteTyper = Typer(quoteElement, getRandomQuote());
+    quoteTyper.start();
   });
+
+  // open quote in twitter on tweet button click
+  tweetBtnElement.click(function() {
+    window.open(encodeURI('https://twitter.com/intent/tweet?text="' + quoteTyper.text + '"&hashtags=' + filmText.toLowerCase()));
+  });
+
+  // start typing
+  characterTyper.start();
+  filmTyper.start();
+  quoteTyper.start();
 
 });
