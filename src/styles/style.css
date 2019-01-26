@@ -1,16 +1,9 @@
-/*
-  Colours:
-    Primary Colour #e86b00 (orange)
-    Secondary Colour #fff (white)
-*/
-
 html {
   height: 100%;
 }
 
 body {
-  -webkit-animation: fade-in 1s linear;
-          animation: fade-in 1s linear;
+  animation: fade-in 1s linear;
   background-color: #e86b00;
   color: #fff;
   display: -webkit-box;

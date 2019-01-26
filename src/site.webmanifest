@@ -1,5 +1,6 @@
 {
-  "name": "Random Quote Machine",
+  "name": "Trainspotting Choose... Quote Machine",
+  "short_name": "Quote Machine",
   "icons": [{
       "src": "./android-chrome-192x192.png",
       "sizes": "192x192",

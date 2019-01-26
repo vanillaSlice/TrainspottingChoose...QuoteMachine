@@ -1,13 +1,11 @@
-$(document).ready(function() {
-
-  'use strict';
-
+$(document).ready(() => {
   /*
    * Text constants.
    */
-  var characterText = 'Mark "Rent-boy" Renton';
-  var filmText = 'Trainspotting';
-  var quotes = [
+
+  const characterText = 'Mark "Rent-boy" Renton';
+  const filmText = 'Trainspotting';
+  const quotes = [
     'Choose Life.',
     'Choose a job.',
     'Choose a career.',
@@ -28,29 +26,27 @@ $(document).ready(function() {
     'Choose DIY and wondering who the f**k you are on Sunday morning.',
     'Choose sitting on that couch watching mind-numbing, spirit-crushing game shows, stuffing f**king junk food into your mouth.',
     'Choose rotting away at the end of it all, p**sing your last in a miserable home, nothing more than an embarrassment to the selfish, f**ked up brats you spawned to replace yourselves.',
-    'Choose your future.'
+    'Choose your future.',
   ];
 
   /*
    * DOM elements.
    */
-  var characterElement = $('.quote__character');
-  var filmElement = $('.quote__film');
-  var quoteElement = $('.quote__text');
-  var nextBtnElement = $('.quote__next-btn');
-  var tweetBtnElement = $('.quote__tweet-btn');
+
+  const characterElement = $('.quote__character');
+  const filmElement = $('.quote__film');
+  const quoteElement = $('.quote__text');
+  const nextBtnElement = $('.quote__next-btn');
+  const tweetBtnElement = $('.quote__tweet-btn');
 
   /*
    * Typers.
    */
-  var characterTyper = Typer(characterElement, characterText);
-  var filmTyper = Typer(filmElement, filmText);
-  var quoteTyper = Typer(quoteElement, getRandomQuote());
 
   // Typer takes an element and prints the text using a typing effect
   function Typer(element, text) {
-    var timeout;
-    var currentIndex = 0;
+    let timeout;
+    let currentIndex = 0;
 
     return {
       start: function typeText() {
@@ -60,47 +56,48 @@ $(document).ready(function() {
         }
 
         element.html(
-          '<span>' + text.substring(0, currentIndex) + '</span>' +
-          '<span class="hidden">' + text.substring(currentIndex) + '</span>'
+          `<span>${text.substring(0, currentIndex)}</span>`
+          + `<span class="hidden">${text.substring(currentIndex)}</span>`,
         );
 
-        currentIndex++;
+        currentIndex += 1;
 
         // continue typing after timeout
         timeout = setTimeout(typeText, 25);
       },
 
-      stop: function() {
-        clearTimeout(timeout);
-      },
+      stop: () => clearTimeout(timeout),
 
-      text: text
+      text,
     };
-  };
-
-  function getRandomQuote() {
-    return getRandomElement(quotes);
   }
 
   function getRandomElement(arr) {
     return arr[Math.round(Math.random() * (arr.length - 1))];
   }
 
+  function getRandomQuote() {
+    return getRandomElement(quotes);
+  }
+
+  const characterTyper = Typer(characterElement, characterText);
+  const filmTyper = Typer(filmElement, filmText);
+  let quoteTyper = Typer(quoteElement, getRandomQuote());
+
   // type new quote on next button click
-  nextBtnElement.click(function() {
+  nextBtnElement.click(() => {
     quoteTyper.stop();
     quoteTyper = Typer(quoteElement, getRandomQuote());
     quoteTyper.start();
   });
 
   // open quote in twitter on tweet button click
-  tweetBtnElement.click(function() {
-    window.open(encodeURI('https://twitter.com/intent/tweet?text="' + quoteTyper.text + '"&hashtags=' + filmText.toLowerCase()));
+  tweetBtnElement.click(() => {
+    window.open(encodeURI(`https://twitter.com/intent/tweet?text="${quoteTyper.text}"&hashtags=${filmText.toLowerCase()}`));
   });
 
   // start typing
   characterTyper.start();
   filmTyper.start();
   quoteTyper.start();
-
 });
