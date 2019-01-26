@@ -1,103 +1,107 @@
-$(document).ready(() => {
-  /*
-   * Text constants.
-   */
+/*
+ * Text Constants
+ */
 
-  const characterText = 'Mark "Rent-boy" Renton';
-  const filmText = 'Trainspotting';
-  const quotes = [
-    'Choose Life.',
-    'Choose a job.',
-    'Choose a career.',
-    'Choose a family.',
-    'Choose a f**king big television.',
-    'Choose washing machines.',
-    'Choose cars.',
-    'Choose compact disc players.',
-    'Choose electrical tin openers.',
-    'Choose good health.',
-    'Choose low cholesterol.',
-    'Choose dental insurance.',
-    'Choose fixed interest mortgage repayments.',
-    'Choose a starter home.',
-    'Choose your friends.',
-    'Choose leisurewear and matching luggage.',
-    'Choose a three-piece suit on hire purchase in a range of f**king fabrics.',
-    'Choose DIY and wondering who the f**k you are on Sunday morning.',
-    'Choose sitting on that couch watching mind-numbing, spirit-crushing game shows, stuffing f**king junk food into your mouth.',
-    'Choose rotting away at the end of it all, p**sing your last in a miserable home, nothing more than an embarrassment to the selfish, f**ked up brats you spawned to replace yourselves.',
-    'Choose your future.',
-  ];
+const character = 'Mark "Rent-boy" Renton';
+const film = 'Trainspotting';
+const quotes = [
+  'Choose Life.',
+  'Choose a job.',
+  'Choose a career.',
+  'Choose a family.',
+  'Choose a f**king big television.',
+  'Choose washing machines.',
+  'Choose cars.',
+  'Choose compact disc players.',
+  'Choose electrical tin openers.',
+  'Choose good health.',
+  'Choose low cholesterol.',
+  'Choose dental insurance.',
+  'Choose fixed interest mortgage repayments.',
+  'Choose a starter home.',
+  'Choose your friends.',
+  'Choose leisurewear and matching luggage.',
+  'Choose a three-piece suit on hire purchase in a range of f**king fabrics.',
+  'Choose DIY and wondering who the f**k you are on Sunday morning.',
+  'Choose sitting on that couch watching mind-numbing, spirit-crushing game shows, stuffing f**king junk food into your mouth.',
+  'Choose rotting away at the end of it all, p**sing your last in a miserable home, nothing more than an embarrassment to the selfish, f**ked up brats you spawned to replace yourselves.',
+  'Choose your future.',
+];
 
-  /*
-   * DOM elements.
-   */
+/*
+ * DOM Elements
+ */
 
-  const characterElement = $('.quote__character');
-  const filmElement = $('.quote__film');
-  const quoteElement = $('.quote__text');
-  const nextBtnElement = $('.quote__next-btn');
-  const tweetBtnElement = $('.quote__tweet-btn');
+const characterElement = $('.js-character');
+const filmElement = $('.js-film');
+const quoteElement = $('.js-quote');
+const nextBtnElement = $('.js-next-btn');
+const tweetBtnElement = $('.js-tweet-btn');
 
-  /*
-   * Typers.
-   */
+/*
+ * Functions
+ */
 
-  // Typer takes an element and prints the text using a typing effect
-  function Typer(element, text) {
-    let timeout;
-    let currentIndex = 0;
+function getRandomElement(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
 
-    return {
-      start: function typeText() {
-        // we've reached the end so stop typing
-        if (currentIndex > text.length) {
-          return;
-        }
+function getRandomQuote() {
+  return getRandomElement(quotes);
+}
 
-        element.html(
-          `<span>${text.substring(0, currentIndex)}</span>`
-          + `<span class="hidden">${text.substring(currentIndex)}</span>`,
-        );
+function Typer(element, text) {
+  let timeout;
+  let currentIndex = 0;
 
-        currentIndex += 1;
+  return {
+    start: function typeText() {
+      if (currentIndex > text.length) {
+        return;
+      }
 
-        // continue typing after timeout
-        timeout = setTimeout(typeText, 25);
-      },
+      element.html(
+        `<span>${text.substring(0, currentIndex)}</span>`
+        + `<span class="hidden">${text.substring(currentIndex)}</span>`,
+      );
 
-      stop: () => clearTimeout(timeout),
+      currentIndex += 1;
 
-      text,
-    };
-  }
+      timeout = setTimeout(typeText, 25);
+    },
 
-  function getRandomElement(arr) {
-    return arr[Math.round(Math.random() * (arr.length - 1))];
-  }
+    stop: () => clearTimeout(timeout),
 
-  function getRandomQuote() {
-    return getRandomElement(quotes);
-  }
+    text,
+  };
+}
 
-  const characterTyper = Typer(characterElement, characterText);
-  const filmTyper = Typer(filmElement, filmText);
-  let quoteTyper = Typer(quoteElement, getRandomQuote());
+/*
+ * Typers
+ */
 
-  // type new quote on next button click
-  nextBtnElement.click(() => {
-    quoteTyper.stop();
-    quoteTyper = Typer(quoteElement, getRandomQuote());
-    quoteTyper.start();
-  });
+const characterTyper = Typer(characterElement, character);
+const filmTyper = Typer(filmElement, film);
+let quoteTyper = Typer(quoteElement, getRandomQuote());
 
-  // open quote in twitter on tweet button click
-  tweetBtnElement.click(() => {
-    window.open(encodeURI(`https://twitter.com/intent/tweet?text="${quoteTyper.text}"&hashtags=${filmText.toLowerCase()}`));
-  });
+/*
+ * Buttons
+ */
 
-  // start typing
-  characterTyper.start();
-  filmTyper.start();
+nextBtnElement.click(() => {
+  quoteTyper.stop();
+  quoteTyper = Typer(quoteElement, getRandomQuote());
   quoteTyper.start();
 });
+
+tweetBtnElement.click(() => {
+  window.open(encodeURI(`https://twitter.com/intent/tweet?text="${quoteTyper.text}"&hashtags=${film.toLowerCase()}`));
+});
+
+/*
+ * Initialise
+ */
+
+characterTyper.start();
+filmTyper.start();
+quoteTyper.start();

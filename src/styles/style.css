@@ -1,32 +1,8 @@
-html {
-  height: 100%;
-}
-
-body {
-  animation: fade-in 1s linear;
-  background-color: #e86b00;
-  color: #fff;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  font-family: Helvetica, Arial, sans-serif;
-  height: 100%;
-  word-wrap: break-word;
-}
-
-@-webkit-keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 @keyframes fade-in {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -35,8 +11,21 @@ body {
 *,
 *::before,
 *::after {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  animation: fade-in 1s linear;
+  background-color: #e86b00;
+  color: #fff;
+  display: flex;
+  font-family: Helvetica, Arial, sans-serif;
+  height: 100%;
+  word-wrap: break-word;
 }
 
 .hidden {
@@ -81,8 +70,7 @@ body {
   margin-top: 2.5rem;
   outline: none;
   padding: 0.3125rem 0.625rem;
-  -webkit-transition-duration: 0.3s;
-          transition-duration: 0.3s;
+  transition-duration: 0.3s;
 }
 
 .quote__btn:focus,
