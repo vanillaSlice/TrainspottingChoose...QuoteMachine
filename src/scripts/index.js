@@ -97,7 +97,7 @@ const quoteTyper = new Typer(quoteElement, getRandomQuote());
  * Buttons Click Handlers
  */
 
-function handleNxtBtnClick() {
+function handleNextBtnClick() {
   quoteTyper.stop();
   quoteTyper.reset();
   quoteTyper.text = getRandomQuote();
@@ -112,7 +112,7 @@ function handleTweetBtnClick() {
  * Initialise
  */
 
-nextBtnElement.click(handleNxtBtnClick);
+nextBtnElement.click(handleNextBtnClick);
 tweetBtnElement.click(handleTweetBtnClick);
 characterTyper.start();
 filmTyper.start();
