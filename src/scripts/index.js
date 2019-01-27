@@ -94,7 +94,7 @@ const filmTyper = new Typer(filmElement, film);
 const quoteTyper = new Typer(quoteElement, getRandomQuote());
 
 /*
- * Buttons Click Handlers
+ * Button Click Handlers
  */
 
 function handleNextBtnClick() {
