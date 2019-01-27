@@ -1,4 +1,4 @@
-# Trainspotting "Choose..." Quote Machine
+# Trainspotting 'Choose...' Quote Machine
 
 [![Latest Release](https://img.shields.io/github/release/vanillaSlice/TrainspottingChoose...QuoteMachine.svg)](https://github.com/vanillaSlice/TrainspottingChoose...QuoteMachine/releases/latest)
 [![Build Status](https://img.shields.io/travis/vanillaSlice/TrainspottingChoose...QuoteMachine/master.svg)](https://travis-ci.org/vanillaSlice/TrainspottingChoose...QuoteMachine)

@@ -39,7 +39,7 @@ const nextBtnElement = $('.js-next-btn');
 const tweetBtnElement = $('.js-tweet-btn');
 
 /*
- * Functions
+ * Helper Functions
  */
 
 function getRandomElement(arr) {
@@ -50,58 +50,70 @@ function getRandomQuote() {
   return getRandomElement(quotes);
 }
 
-function Typer(element, text) {
-  let timeout;
-  let currentIndex = 0;
+/*
+ * Typer Class
+ */
 
-  return {
-    start: function typeText() {
-      if (currentIndex > text.length) {
-        return;
-      }
+class Typer {
+  constructor(element, text) {
+    this.element = element;
+    this.text = text;
+    this.currentIndex = 0;
+  }
 
-      element.html(
-        `<span>${text.substring(0, currentIndex)}</span>`
-        + `<span class="hidden">${text.substring(currentIndex)}</span>`,
-      );
+  start() {
+    if (this.currentIndex > this.text.length) {
+      return;
+    }
 
-      currentIndex += 1;
+    this.element.html(
+      `<span>${this.text.substring(0, this.currentIndex)}</span>`
+      + `<span class="hidden">${this.text.substring(this.currentIndex)}</span>`,
+    );
 
-      timeout = setTimeout(typeText, 25);
-    },
+    this.currentIndex += 1;
 
-    stop: () => clearTimeout(timeout),
+    this.timeout = setTimeout(this.start.bind(this), 25);
+  }
 
-    text,
-  };
+  stop() {
+    clearTimeout(this.timeout);
+  }
+
+  reset() {
+    this.currentIndex = 0;
+  }
 }
 
 /*
  * Typers
  */
 
-const characterTyper = Typer(characterElement, character);
-const filmTyper = Typer(filmElement, film);
-let quoteTyper = Typer(quoteElement, getRandomQuote());
+const characterTyper = new Typer(characterElement, character);
+const filmTyper = new Typer(filmElement, film);
+const quoteTyper = new Typer(quoteElement, getRandomQuote());
 
 /*
- * Buttons
+ * Buttons Click Handlers
  */
 
-nextBtnElement.click(() => {
+function handleNxtBtnClick() {
   quoteTyper.stop();
-  quoteTyper = Typer(quoteElement, getRandomQuote());
+  quoteTyper.reset();
+  quoteTyper.text = getRandomQuote();
   quoteTyper.start();
-});
+}
 
-tweetBtnElement.click(() => {
+function handleTweetBtnClick() {
   window.open(encodeURI(`https://twitter.com/intent/tweet?text="${quoteTyper.text}"&hashtags=${film.toLowerCase()}`));
-});
+}
 
 /*
  * Initialise
  */
 
+nextBtnElement.click(handleNxtBtnClick);
+tweetBtnElement.click(handleTweetBtnClick);
 characterTyper.start();
 filmTyper.start();
 quoteTyper.start();
