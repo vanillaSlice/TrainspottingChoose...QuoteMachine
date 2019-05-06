@@ -7,7 +7,7 @@
 *Intermediate Front End Development Project for FreeCodeCamp.*
 
 This page generates famous 'Choose...' quotes from the film Trainspotting.
-A deployed version can be viewed [here](https://vanillaslice.github.io/TrainspottingChoose...QuoteMachine/).
+A deployed version can be viewed [here](https://trainspotting.mikelowe.xyz/).
 
 ## Screenshot
 
